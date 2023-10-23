@@ -1,11 +1,15 @@
 import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import JobDetail from "./components/JobDetail";
 
 function App() {
   return (
-    <>
-      <h1>Code Here</h1>
-      <Home />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/job/:id" element={<JobDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

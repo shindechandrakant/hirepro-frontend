@@ -1,0 +1,17 @@
+.banner {
+  position: relative;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(106, 148, 246);
+}
+
+.banner > * {
+  background-color: rgb(106, 148, 246);
+}
+
+.logo {
+  margin-top: 2%;
+}
