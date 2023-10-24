@@ -45,13 +45,12 @@ export default function ApplicationForm() {
     })
       .then(function (response) {
         //handle success
-        console.log(response);
-        console.log("success");
+        alert("Applied SuccessFully");
       })
-      .catch(function (response) {
+      .catch(function (error) {
         //handle error
-        console.log("failed");
-        console.log(response);
+        alert("Failed to Apply");
+        console.log(error);
       });
   };
 

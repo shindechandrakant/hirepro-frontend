@@ -28,7 +28,7 @@ export default function JobCard(prop) {
             </span>
           </div>
           <span>
-            {job.key_skills?.map((skill) => {
+            {job.key_skills.split(",")?.map((skill) => {
               return (
                 <>
                   <PiDotDuotone />
