@@ -16,7 +16,7 @@ export default function JobCard(prop) {
     <Container className="job_card">
       <Row>
         <Col sm={8} className="job_props">
-          <h3>{job.title}</h3>
+          <h3>{job.job_title}</h3>
           <p>{job.company_name}</p>
           <div>
             <span>
@@ -37,7 +37,7 @@ export default function JobCard(prop) {
               );
             })}
           </span>
-          <div>{job.created_at}</div>
+          <div>posted on {new Date(job.created_at).toDateString()}</div>
         </Col>
         <Col className="view_job">
           <button

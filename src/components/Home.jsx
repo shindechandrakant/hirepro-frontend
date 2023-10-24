@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import { Container, Row } from "react-bootstrap";
 import "../styles/Home.css";
+import axios from "axios";
 
 export default function Home() {
-  const job = {
-    job_id: "job-123",
-    title: "Android Developer",
-    company_name: "Beekin Co.",
-    experience: "2-3Y",
-    location: "Pune, India",
-    key_skills: ["java", "Pyhton", "Node Js"],
-    created_at: new Date().toDateString(),
+  const [openJobs, setOpenJobs] = useState([]);
+  const [openJobsCount, setOpenJobsCount] = useState(0);
+
+  const fetchOpenJobs = () => {
+    axios({
+      method: "get",
+      url: `http://localhost:8000/api/v1/jobs/list`,
+    })
+      .then(function (response) {
+        setOpenJobs(response.data.jobs);
+        setOpenJobsCount(response.data.count);
+      })
+      .catch((error) => {
+        console.log("something went wrong");
+        console.log(error);
+      });
   };
+
+  useEffect(() => fetchOpenJobs(), []);
+
   return (
     <Container>
       <Row>
@@ -25,11 +37,9 @@ export default function Home() {
         </a>
         <div className="banner">
           <h1>Jobs at Beekin!</h1>
-          <h6>Want to Join out team? we have 7 open jobs</h6>
+          <h6>Want to Join out team? we have {openJobsCount} open jobs</h6>
         </div>
-        <JobCard job={job} />
-        <JobCard job={job} />
-        <JobCard job={job} />
+        {openJobs && openJobs.map((job) => <JobCard job={job} />)}
       </Row>
       <footer></footer>
     </Container>

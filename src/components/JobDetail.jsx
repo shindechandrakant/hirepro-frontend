@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import "../styles/JobDetail.css";
+import axios from "axios";
 import ApplicationForm from "./ApplicationForm";
 export default function JobDetail() {
   const { id } = useParams();
   const [apply, setApply] = useState(false);
+  const [jobDetails, setJobDetails] = useState({});
+
+  const fetchJobDetails = () => {
+    axios({
+      method: "get",
+      url: `http://localhost:8000/api/v1/jobs/detail/${id}`,
+    })
+      .then(function (response) {
+        console.log(response.data);
+        setJobDetails(response.data.job);
+      })
+      .catch((error) => {
+        console.log("something went wrong");
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchJobDetails();
+  }, []);
 
   const onApplyClick = () => {
     setApply(true);
@@ -17,41 +38,40 @@ export default function JobDetail() {
         <Col sm={4} className="detail_card">
           <div className="detail_point">
             <div>Location</div>
-            <div>Pune</div>
+            <div>{jobDetails.location}</div>
           </div>
           <div className="detail_point">
             <div>Salary</div>
-            <div>12LPA</div>
+            <div>{jobDetails.salary}</div>
           </div>
           <div className="detail_point">
             <div>Job Type</div>
-            <div>Full Time</div>
+            <div>{jobDetails.job_type}</div>
           </div>
           <div className="detail_point">
             <div>Date Posted</div>
-            <div>Oct 12, 2023</div>
+            <div>{new Date(jobDetails.created_at).toDateString()}</div>
           </div>
           <div className="detail_point">
             <button onClick={onApplyClick}>Apply Now</button>
           </div>
         </Col>
         <Col>
-          <h2>Backend Developer At Beekin</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            quibusdam voluptatem harum maxime obcaecati cupiditate, voluptas ad
-            commodi. Dolorum error laboriosam, perspiciatis repudiandae tempora
-            ipsam quas libero natus obcaecati assumenda. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Est earum delectus numquam
-            laboriosam repellat cumque repudiandae, dolorum maxime aliquid
-            impedit eveniet quaerat consequatur, quod neque quae rerum et.
-            Repellendus, totam!
-          </p>
-          <h3>Responsibility</h3>
-          <ul>
-            <li>1</li>
-            <li>1</li>
-          </ul>
+          <h2>{`${jobDetails.title} at ${jobDetails.company_name}`}</h2>
+          <p>{jobDetails.description}</p>
+          {jobDetails &&
+            jobDetails.points.map((point) => {
+              return (
+                <>
+                  <h3>{point.field_name}</h3>
+                  <ul>
+                    {point.points.map((pt) => (
+                      <li>{pt}</li>
+                    ))}
+                  </ul>
+                </>
+              );
+            })}
 
           <h3>Requirement</h3>
           <ul>
