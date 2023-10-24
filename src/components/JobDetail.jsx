@@ -72,12 +72,6 @@ export default function JobDetail() {
                 </>
               );
             })}
-
-          <h3>Requirement</h3>
-          <ul>
-            <li>1</li>
-            <li>1</li>
-          </ul>
           <button onClick={onApplyClick}>Apply Now</button>
         </Col>
       </Row>
