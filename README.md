@@ -27,11 +27,11 @@
 - ##### Home page / Landing page
 
   - User will land here <br>
-    ![Home page](https://github.com/shindechandrakant/hirepro-frontend/blob/master/images/Home%20page.png?raw=true)
+    ![Home page](<images/Home page.png>)
 
 - ##### if a user click on View job application will show detail description about given job
 
-  - ![Detail page](https://github.com/shindechandrakant/hirepro-frontend/blob/master/images/Home%20page.png?raw=true)
+  - ![Detail page](<images/Detail job Page.png>)
 
 - ##### Applcation form
-  - ![Apply Form page](https://github.com/shindechandrakant/hirepro-frontend/blob/master/images/apply%20form.png?raw=true)
+  - ![Apply Form page](<images/apply form.png>)
