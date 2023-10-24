@@ -53,14 +53,16 @@ export default function JobDetail() {
             <div>{new Date(jobDetails.created_at).toDateString()}</div>
           </div>
           <div className="detail_point">
-            <button onClick={onApplyClick}>Apply Now</button>
+            <button className="apply_button" onClick={onApplyClick}>
+              Apply Now
+            </button>
           </div>
         </Col>
         <Col>
-          <h2>{`${jobDetails.title} at ${jobDetails.company_name}`}</h2>
+          <h2>{`${jobDetails.job_title} at ${jobDetails.company_name}`}</h2>
           <p>{jobDetails.description}</p>
           {jobDetails &&
-            jobDetails.points.map((point) => {
+            jobDetails.points?.map((point) => {
               return (
                 <>
                   <h3>{point.field_name}</h3>
@@ -72,10 +74,12 @@ export default function JobDetail() {
                 </>
               );
             })}
-          <button onClick={onApplyClick}>Apply Now</button>
+          <button className="apply_button" onClick={onApplyClick}>
+            Apply Now
+          </button>
         </Col>
       </Row>
-      <Row>
+      <Row className="apply_form">
         <Col>{apply ? <ApplicationForm /> : ""}</Col>
       </Row>
     </Container>
