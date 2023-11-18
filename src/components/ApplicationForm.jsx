@@ -16,7 +16,6 @@ export default function ApplicationForm() {
     headline: "",
     coverletter: "",
     resume: "",
-    job_id: id,
   });
   const inputChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -39,7 +38,7 @@ export default function ApplicationForm() {
 
     axios({
       method: "post",
-      url: "http://localhost:8000/api/v1/jobs/apply",
+      url: `http://localhost:8000/api/v1/jobs/apply/${id}`,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     })

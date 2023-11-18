@@ -37,7 +37,7 @@ export default function Home() {
         </a>
         <div className="banner">
           <h1>Jobs at Beekin!</h1>
-          <h6>Want to Join out team? we have {openJobsCount} open jobs</h6>
+          <h6>Want to Join our team? we have {openJobsCount} open jobs</h6>
         </div>
         {openJobs && openJobs.map((job) => <JobCard job={job} />)}
       </Row>
